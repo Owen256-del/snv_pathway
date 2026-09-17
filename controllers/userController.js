@@ -48,5 +48,62 @@ const updateProfile = async (req, res) => {
     });
   }
 };
+const updateCareer = async (req, res) => {
+  try {
+    const { career_id } = req.body;
 
-module.exports = { getProfile, updateProfile };
+    if (!career_id) {
+      return res.status(400).json({
+        message: "Career ID is required",
+      });
+    }
+
+    const result = await pool.query(
+      `UPDATE users
+             SET career_id = $1
+             WHERE id = $2
+             RETURNING id, name, email, career_id`,
+      [career_id, req.user.id],
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    res.json({
+      message: "Career selected successfully",
+      user: result.rows[0],
+    });
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "Failed to select career",
+    });
+  }
+};
+
+const getMyCareer = async (req, res) => {
+  try {
+    const results = await pool.query(
+      `  SELECT careers.id, careers.title, careers.description FROM users JOIN careers ON users.career_id = careers.id
+      WHERE users.id = $1 `,
+      [req.user.id],
+    );
+    if (results.rows.length === 0) {
+      return res.status(404).json({
+        message: "No career selected",
+      });
+    }
+    res.json(results.rows[0]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "couldn't fetch user career",
+    });
+  }
+};
+
+module.exports = { getProfile, updateProfile, updateCareer, getMyCareer };

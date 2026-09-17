@@ -11,6 +11,9 @@ app.use("/api/auth", authRoutes);
 const careerRoutes = require("./routes/careerRoute");
 app.use("/api/careers", careerRoutes);
 
+const skillRoutes = require("./routes/skillRoutes");
+app.use("/api/skills", skillRoutes);
+
 const PORT = 5000;
 
 const pool = require("./config/db");

@@ -22,6 +22,9 @@ CREATE TABLE careers (
     field_id INT REFERENCES fields(id)
 );
 
+ALTER TABLE users
+ADD COLUMN career_id INT REFERENCES careers(id);
+
 CREATE TABLE skills (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
