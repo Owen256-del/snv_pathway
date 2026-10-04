@@ -76,3 +76,83 @@ INSERT INTO career_skills (career_id, skill_id, importance) VALUES
 (5, 6, 'required'),
 (5, 7, 'required'),
 (5, 9, 'required');
+
+INSERT INTO opportunities
+(title, organization, description, type, location, country, deadline, url, career_id)
+VALUES
+(
+    'Data Analysis Internship',
+    'Tech Solutions Uganda',
+    'Internship focused on data analysis and reporting.',
+    'Internship',
+    'Kampala',
+    'Uganda',
+    '2026-10-30',
+    'https://example.com/data-internship',
+    1
+),
+(
+    'Research Assistant Opportunity',
+    'University Research Lab',
+    'Assist with biological research and laboratory activities.',
+    'Research',
+    'Algiers',
+    'Algeria',
+    '2026-11-15',
+    'https://example.com/research',
+    2
+),
+(
+    'Environmental Project Volunteer',
+    'Green Earth Initiative',
+    'Volunteer opportunity working on environmental projects.',
+    'Volunteering',
+    'Algiers',
+    'Algeria',
+    '2026-12-01',
+    'https://example.com/environment',
+    3
+),
+(
+    'Junior Data Analyst Course',
+    'Digital Skills Academy',
+    'Practical training in Excel, SQL and data analysis.',
+    'Course',
+    'Online',
+    'International',
+    '2026-12-20',
+    'https://example.com/data-course',
+    1
+);
+
+// ALUMNI
+
+INSERT INTO alumni
+(name, field_id, graduation_year, current_role, organization, country, bio, linkedin)
+VALUES
+('Sarah Nakato', 1, 2023, 'Data Analyst', 'Tech Uganda', 'Uganda',
+ 'Works in data analysis and business intelligence.',
+ 'https://linkedin.com'),
+
+('Daniel Okello', 2, 2022, 'Environmental Consultant', 'Green Solutions', 'Uganda',
+ 'Works on environmental assessment and sustainability projects.',
+ 'https://linkedin.com'),
+
+('James Ouma', 1, 2021, 'Research Scientist', 'University Research Lab', 'Algeria',
+ 'Researches biological and laboratory applications.',
+ 'https://linkedin.com');
+
+/// connect to careers
+
+INSERT INTO alumni_careers (alumni_id, career_id)
+VALUES
+(1, 1),
+(2, 3),
+(3, 2);
+
+// mentership request
+
+-- INSERT INTO mentorship_requests
+-- (student_id, alumni_id, message)
+-- VALUES
+-- ($1, $2, $3);

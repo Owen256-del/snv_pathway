@@ -14,6 +14,12 @@ app.use("/api/careers", careerRoutes);
 const skillRoutes = require("./routes/skillRoutes");
 app.use("/api/skills", skillRoutes);
 
+const opportunityRoutes = require("./routes/opportunityRoute");
+app.use("/api/opportunities", opportunityRoutes);
+
+const alumniRoute = require("./routes/alumniRoute");
+
+app.use("/api/alumni", alumniRoute);
 const PORT = 5000;
 
 const pool = require("./config/db");
