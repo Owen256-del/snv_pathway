@@ -20,6 +20,9 @@ app.use("/api/opportunities", opportunityRoutes);
 const alumniRoute = require("./routes/alumniRoute");
 
 app.use("/api/alumni", alumniRoute);
+
+const mentorshipRoute = require("./routes/mentershipRoute");
+app.use("/api/mentorship", mentorshipRoute);
 const PORT = 5000;
 
 const pool = require("./config/db");

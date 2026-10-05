@@ -45,36 +45,7 @@ const getAlumniById = async (req, res) => {
   }
 };
 
-const sendMentorshipRequest = async (req, res) => {
-  try {
-    const { alumniId } = req.params;
-    const userId = req.user.id;
-    const { message } = req.body;
-
-    const result = await pool.query(
-      `
-            INSERT INTO mentorship_requests
-            (student_id, alumni_id, message)
-            VALUES ($1, $2, $3)
-            RETURNING *
-            `,
-      [userId, alumniId, message],
-    );
-
-    res.status(201).json({
-      message: "Mentorship request sent successfully",
-      request: result.rows[0],
-    });
-  } catch (error) {
-    console.error(error);
-
-    res.status(500).json({
-      message: "Failed to send mentorship request",
-    });
-  }
-};
 module.exports = {
   getAlumniById,
   getAlumniByCareer,
-  sendMentorshipRequest,
 };
